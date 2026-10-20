@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-src 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>ATRI · 体验服务管理</title>
+  <link rel="stylesheet" href="/admin/assets/admin.css">
+  <script src="/admin/assets/admin.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <noscript><div class="noscript-notice">请启用 JavaScript 以登录并管理 ATRI 体验服务。</div></noscript>
+  <section id="boot-screen" class="boot-screen" aria-label="验证会话">
+    <span class="brand-mark" aria-hidden="true">A<span></span></span>
+    <span class="spinner" aria-hidden="true"></span>
+    <p id="boot-message" role="status">正在验证管理会话…</p>
+    <button id="boot-retry" class="button button-primary" type="button" hidden>重新连接</button>
+  </section>
+
+  <section id="login-screen" class="auth-screen" aria-labelledby="login-title" hidden>
+    <aside class="auth-brand">
+      <a class="brand brand-light" href="/admin/" aria-label="ATRI 体验服务管理"><span class="brand-mark" aria-hidden="true">A<span></span></span><span>ATRI<small>体验服务管理</small></span></a>
+      <div class="auth-brand-copy"><span class="eyebrow">ATRI ADMINISTRATION</span><h1>有序管理，<br>每一次体验。</h1><p>查看体验状态、管理服务记录，<br>让每项变更都有迹可循。</p><div class="brand-line"></div><p class="auth-brand-footnote">设备与号码均以摘要标识。<br>后台不展示明文手机号。</p></div>
+      <span class="auth-brand-bottom">ATRI / 体验服务控制台</span>
+    </aside>
+    <div class="auth-panel">
+      <div class="auth-card">
+        <span class="section-kicker">欢迎回来</span><h2 id="login-title">登录管理后台</h2><p class="muted">使用管理员账号继续。</p>
+        <div id="login-notice" class="notice notice-info" role="status" hidden></div>
+        <form id="login-form" class="stack-form">
+          <div class="field"><label for="login-username">管理员账号</label><input id="login-username" name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required maxlength="40" placeholder="请输入管理员账号"></div>
+          <div class="field"><label for="login-password">密码</label><input id="login-password" name="password" type="password" autocomplete="current-password" required placeholder="请输入密码"></div>
+          <p id="login-error" class="form-error" role="alert" hidden></p>
+          <button id="login-submit" class="button button-primary button-wide" type="submit">登录后台<span aria-hidden="true">→</span></button>
+        </form>
+        <p class="auth-help">仅限已授权管理员 · 无公开注册入口</p>
+      </div>
+      <p class="auth-footer">ATRI 体验服务<span class="timezone-label"></span></p>
+    </div>
+  </section>
+
+  <section id="password-gate" class="password-gate" aria-labelledby="gate-title" hidden>
+    <div class="gate-card">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">A<span></span></span><span>ATRI<small>账号安全</small></span></div>
+      <span class="section-kicker">首次登录 · 完成安全设置</span><h1 id="gate-title">请先修改密码</h1><p class="muted">账号 <strong id="gate-username"></strong> 需要修改密码后才能访问管理功能。</p>
+      <form id="gate-password-form" class="stack-form" data-password-form>
+        <div class="field"><label for="gate-current-password">当前密码</label><input id="gate-current-password" name="current_password" type="password" autocomplete="current-password" required></div>
+        <div class="field"><label for="gate-new-password">新密码</label><input id="gate-new-password" name="new_password" type="password" autocomplete="new-password" minlength="12" required aria-describedby="gate-password-help"><p id="gate-password-help" class="field-help">至少 12 个字符，请勿重复使用当前密码。</p></div>
+        <div class="field"><label for="gate-confirm-password">确认新密码</label><input id="gate-confirm-password" name="confirm_password" type="password" autocomplete="new-password" minlength="12" required></div>
+        <p class="form-error" data-password-error role="alert" hidden></p>
+        <button class="button button-primary button-wide" type="submit">修改密码并重新登录</button>
+        <button class="button button-quiet button-wide" type="button" data-logout>退出登录</button>
+      </form>
+    </div>
+  </section>
+
+  <div id="app-shell" class="app-shell" hidden>
+    <button id="sidebar-backdrop" class="sidebar-backdrop" type="button" aria-label="关闭导航" hidden></button>
+    <aside id="sidebar" class="sidebar" aria-label="管理导航">
+      <a class="brand brand-light" href="/admin/"><span class="brand-mark" aria-hidden="true">A<span></span></span><span>ATRI<small>体验服务管理</small></span></a>
+      <p class="nav-caption">工作空间</p>
+      <nav class="nav-list">
+        <button class="nav-item is-active" type="button" data-view="overview" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>总览<span class="nav-arrow" aria-hidden="true">›</span></button>
+        <button class="nav-item" type="button" data-view="trials"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>体验记录<span class="nav-arrow" aria-hidden="true">›</span></button>
+        <button class="nav-item" type="button" data-view="audit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6l-8-3Z"/><path d="m8 12 3 3 5-6"/></svg>审计日志<span class="nav-arrow" aria-hidden="true">›</span></button>
+      </nav>
+      <div class="sidebar-bottom"><p class="nav-caption">账号</p><button class="nav-item" type="button" data-view="password"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg>修改密码</button><div class="sidebar-note"><span class="tiny-dot" aria-hidden="true"></span>管理变更可在审计日志中查看</div></div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar">
+        <div class="topbar-location"><button id="menu-toggle" class="icon-button mobile-menu" type="button" aria-label="打开导航" aria-controls="sidebar" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><span class="breadcrumb-root">工作空间</span><span class="breadcrumb-divider" aria-hidden="true">/</span><span id="breadcrumb-current">总览</span></div>
+        <div class="account-bar"><span class="account-avatar" aria-hidden="true">管</span><span id="account-name" class="account-name"></span><button class="button button-quiet button-small" type="button" data-logout>退出</button></div>
+      </header>
+      <main id="main-content" class="main-content" tabindex="-1">
+        <div class="page-heading"><div><span class="section-kicker">体验服务 / 管理控制台</span><h1 id="page-title">总览</h1><p id="page-description" class="muted">了解体验服务的记录与当前状态。</p></div><div class="heading-actions"><span id="refresh-state" class="refresh-state">每 30 秒刷新</span><button id="refresh-button" class="button button-secondary" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M6 7a7 7 0 0 1 12-2l2 3M4 16l2 3a7 7 0 0 0 12-2"/></svg><span>刷新数据</span></button></div></div>
+        <div id="global-notice" class="notice notice-error" role="alert" hidden></div>
+
+        <section id="view-overview" class="page-view" aria-label="总览">
+          <div class="section-meta"><span><span class="tiny-dot accent-dot" aria-hidden="true"></span>服务记录概况</span><span id="overview-updated">等待加载</span></div>
+          <div id="overview-error" class="notice notice-error" role="alert" hidden></div>
+          <div id="stats-grid" class="stats-grid" aria-label="体验统计" aria-busy="true">
+            <article class="stat-card stat-featured"><div class="stat-label">全部记录<span class="stat-symbol" aria-hidden="true">Σ</span></div><p class="stat-value" data-stat="total">—</p><span class="stat-description">已登记的体验记录</span></article>
+            <article class="stat-card"><div class="stat-label">体验中<span class="stat-dot active-dot" aria-hidden="true"></span></div><p class="stat-value" data-stat="active">—</p><span class="stat-description">当前处于有效体验期</span></article>
+            <article class="stat-card"><div class="stat-label">已到期<span class="stat-dot expired-dot" aria-hidden="true"></span></div><p class="stat-value" data-stat="expired">—</p><span class="stat-description">体验期限已结束</span></article>
+            <article class="stat-card"><div class="stat-label">已停用<span class="stat-dot disabled-dot" aria-hidden="true"></span></div><p class="stat-value" data-stat="disabled">—</p><span class="stat-description">管理员停用的记录</span></article>
+            <article class="stat-card"><div class="stat-label">历史记录<span class="stat-dot legacy-dot" aria-hidden="true"></span></div><p class="stat-value" data-stat="legacy">—</p><span class="stat-description">服务标记为 legacy</span></article>
+            <article class="stat-card"><div class="stat-label">今日领取<span class="stat-symbol" aria-hidden="true">↗</span></div><p class="stat-value" data-stat="today_claimed">—</p><span class="stat-description">按服务端日期统计</span></article>
+          </div>
+          <div class="overview-columns"><section class="panel preview-panel"><div class="panel-header"><div><h2>体验记录速览</h2><p>显示当前返回的前 5 条记录</p></div><button class="button button-text button-small" data-go-trials type="button">查看全部 <span aria-hidden="true">↗</span></button></div><div id="preview-content" class="preview-content" aria-live="polite"></div></section><aside class="panel rules-panel"><span class="rule-icon" aria-hidden="true">i</span><h2>管理规则</h2><p>每次操作前，请核对设备摘要和当前状态。</p><ul class="rules-list"><li><strong>重置体验</strong><span>保留原绑定，从当前重新计时 30 分钟。</span></li><li><strong>停用与恢复</strong><span>均不延长期限。恢复后是否有效由原到期时间决定。</span></li><li><strong>摘要与记录</strong><span>设备、号码均显示摘要；请求次数不代表在线人数。</span></li></ul><div class="rule-footnote">状态表示服务记录状态，不表示客户端实时连接状态。</div></aside></div>
+        </section>
+
+        <section id="view-trials" class="page-view" aria-label="体验记录" hidden>
+          <section class="panel records-panel"><div class="panel-header"><div><h2>体验记录</h2><p>搜索、筛选并管理单条体验记录</p></div><button id="export-button" class="button button-secondary button-small" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 15v5h16v-5"/></svg><span>导出 CSV</span></button></div>
+            <form id="filter-form" class="filter-bar"><div class="search-field"><label class="sr-only" for="trial-query">搜索设备摘要或号码摘要</label><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><input id="trial-query" name="q" type="search" maxlength="128" placeholder="搜索设备摘要 / 号码摘要" autocomplete="off" spellcheck="false"></div><div class="status-field"><label for="trial-status">状态</label><select id="trial-status" name="status"><option value="all">全部状态</option><option value="active">体验中</option><option value="expired">已到期</option><option value="disabled">已停用</option><option value="legacy">历史记录</option></select></div><button class="button button-primary" type="submit">查询</button><button id="clear-filters" class="button button-quiet" type="button">重置筛选</button></form>
+            <div class="table-context"><span id="trial-filter-summary">全部记录</span><span>摘要可在详情中完整查看与复制</span></div><div id="trials-content" class="table-content" aria-live="polite"></div>
+            <div class="pagination"><span id="trials-page-info">等待加载</span><div class="pagination-controls"><label for="trial-page-size">每页</label><select id="trial-page-size"><option value="20">20 条</option><option value="50">50 条</option><option value="100">100 条</option></select><button id="trials-prev" class="button button-secondary button-small" type="button" disabled>上一页</button><span id="trials-page-number">—</span><button id="trials-next" class="button button-secondary button-small" type="button" disabled>下一页</button></div></div>
+          </section><p class="page-footnote">导出包含已应用筛选下的全部记录。日期按本地时区显示；剩余时间是刷新时的估算。</p>
+        </section>
+
+        <section id="view-audit" class="page-view" aria-label="审计日志" hidden>
+          <section class="panel"><div class="panel-header"><div><h2>审计日志</h2><p>查看管理员、操作原因及服务端记录的详情</p></div><span class="subtle-badge">只读记录</span></div><div id="audit-content" class="table-content" aria-live="polite"></div><div class="pagination"><span id="audit-page-info">等待加载</span><div class="pagination-controls"><button id="audit-prev" class="button button-secondary button-small" type="button" disabled>上一页</button><span id="audit-page-number">—</span><button id="audit-next" class="button button-secondary button-small" type="button" disabled>下一页</button></div></div></section>
+        </section>
+
+        <section id="view-password" class="page-view" aria-label="修改密码" hidden>
+          <section class="panel password-panel"><div class="panel-header"><div><h2>修改登录密码</h2><p>修改成功后将退出当前会话，请使用新密码重新登录。</p></div></div><form id="password-form" class="stack-form password-form" data-password-form><div class="field"><label for="current-password">当前密码</label><input id="current-password" name="current_password" type="password" autocomplete="current-password" required></div><div class="field"><label for="new-password">新密码</label><input id="new-password" name="new_password" type="password" autocomplete="new-password" minlength="12" required aria-describedby="password-help"><p id="password-help" class="field-help">至少 12 个字符，请勿重复使用当前密码。</p></div><div class="field"><label for="confirm-password">确认新密码</label><input id="confirm-password" name="confirm_password" type="password" autocomplete="new-password" minlength="12" required></div><p data-password-error class="form-error" role="alert" hidden></p><button class="button button-primary" type="submit">修改密码并重新登录</button></form></section>
+        </section>
+        <footer class="workspace-footer"><span>ATRI · 体验服务管理</span><span class="timezone-label"></span></footer>
+      </main>
+    </div>
+  </div>
+
+  <dialog id="detail-dialog" class="detail-dialog" aria-labelledby="detail-title"><div class="dialog-header"><div><span class="section-kicker">单条记录管理</span><h2 id="detail-title">体验详情</h2></div><button id="detail-close" class="icon-button" type="button" aria-label="关闭体验详情">×</button></div><div id="detail-content" class="dialog-body" aria-live="polite"></div><div class="dialog-footer"><span>操作以服务端返回的结果为准</span><button id="detail-done" class="button button-secondary" type="button">关闭</button></div></dialog>
+  <dialog id="confirm-dialog" class="confirm-dialog" aria-labelledby="confirm-title"><form id="confirm-form"><div class="dialog-header"><div><span class="section-kicker">操作确认</span><h2 id="confirm-title">确认操作</h2></div><button id="confirm-close" class="icon-button" type="button" aria-label="取消操作">×</button></div><div class="dialog-body"><p id="confirm-description" class="confirmation-copy"></p><div id="confirm-target" class="confirmation-target"></div><div id="confirm-reason-field" class="field"><label for="action-reason">操作原因 <span class="required-label">必填</span></label><textarea id="action-reason" name="reason" rows="3" maxlength="300" placeholder="请填写原因，最多 300 个字符"></textarea></div><div id="confirm-note-field" class="field" hidden><label for="action-note">管理备注</label><textarea id="action-note" name="note" rows="4" maxlength="300" placeholder="最多 300 个字符；留空可清除备注"></textarea></div><div id="confirm-reset-field" class="field" hidden><label for="reset-phrase">请输入“重置”以确认</label><input id="reset-phrase" name="reset_phrase" type="text" autocomplete="off" spellcheck="false" placeholder="重置"></div><p id="confirm-error" class="form-error" role="alert" hidden></p></div><div class="dialog-footer confirm-footer"><button id="confirm-cancel" class="button button-secondary" type="button">取消</button><button id="confirm-submit" class="button button-primary" type="submit">确认</button></div></form></dialog>
+  <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="false"></div>
+</body>
+</html>

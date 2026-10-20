@@ -1,0 +1,16 @@
+{
+  "name": "ATRI不想跑校园跑-关于独立页面版.apk",
+  "sha256": "1d4f2aa5780016031af0fa5443ba4d6570ff8a00e12897f4ec506650e818ed4f",
+  "package": "com.xxpvip",
+  "version_name": "1.3.11",
+  "version_code": 28,
+  "min_sdk": 24,
+  "target_sdk": 36,
+  "certificate_sha256": "ab98c9b0489f6b9ecb222537d2b397fbe9277bb06cba3ac9f12a6d22b3b58700",
+  "dex_sha256": {
+    "classes.dex": "bdff4e808048512b28ecf76c3a4f58777d9bb61ec1baa550be15e356f7cc5c0d",
+    "classes2.dex": "7a06d172d158ddafdfd45b8588ca76948c1c4618fcb7de43e035ae1ae02ba9f7",
+    "classes3.dex": "47158e4d216e15339c280abacbe3648be0ca1471021ad705b6fd56596352ed75"
+  },
+  "included_in_source_archive": false
+}

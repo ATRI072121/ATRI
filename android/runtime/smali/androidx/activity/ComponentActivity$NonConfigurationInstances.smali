@@ -1,0 +1,34 @@
+.class final Landroidx/activity/ComponentActivity$NonConfigurationInstances;
+.super Ljava/lang/Object;
+.source "r8-map-id-bf8476473b86238acb17d90e85160b500b895915ef2d2a14b1a419d66780a491"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Landroidx/activity/ComponentActivity;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x19
+    name = "NonConfigurationInstances"
+.end annotation
+
+
+# instance fields
+.field custom:Ljava/lang/Object;
+
+.field viewModelStore:Landroidx/lifecycle/ViewModelStore;
+
+
+# direct methods
+.method public constructor <init>()V
+    .locals 0
+
+    .line 1
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 2
+    .line 3
+    .line 4
+    return-void
+.end method
