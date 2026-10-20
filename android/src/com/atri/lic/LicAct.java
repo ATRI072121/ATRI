@@ -876,9 +876,10 @@ public final class LicAct extends Activity {
         content.setBackground(round(CARD, CARD_LINE, 20));
         content.addView(bold("关于与版权", 18, TITLE));
         TextView details = text("版权声明\nGPL-3.0-only\n\n原作者项目地址\n"
-                + "https://github.com/ZCShou/GoGoGo\n\n修改者\nATRI072121\n\n本软件项目地址", 15, LABEL);
+                + "https://github.com/ZCShou/GoGoGo\n\n修改者\nATRI072121\n\n本软件项目地址\nhttps://github.com/ATRI072121/ATRI", 15, LABEL);
         details.setPadding(0, dp(12), 0, 0);
         details.setAutoLinkMask(android.text.util.Linkify.WEB_URLS);
+        android.text.util.Linkify.addLinks(details, android.text.util.Linkify.WEB_URLS);
         details.setLinksClickable(true);
         details.setLinkTextColor(ACCENT);
         details.setMovementMethod(android.text.method.LinkMovementMethod.getInstance());

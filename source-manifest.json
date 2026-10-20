@@ -27594,8 +27594,8 @@
       "bytes": 20201
     },
     "android/src/com/atri/lic/LicAct.java": {
-      "sha256": "b8eb4fab67e039c06ff2e7402bf8ac345385ee9b33411ee38340e85d647c09ae",
-      "bytes": 45731
+      "sha256": "bccc1f8700b853d9ed00d20aff118377bb92cd3e8f8290de72729e30b97dd03f",
+      "bytes": 45856
     },
     "android/src/com/atri/lic/NoticeController.java": {
       "sha256": "2211e6eaf164c8660f47284d05421954ebf34d1f3a189372399159619e5a5e1b",
